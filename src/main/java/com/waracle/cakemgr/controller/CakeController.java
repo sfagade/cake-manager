@@ -74,9 +74,8 @@ public class CakeController {
     @PostMapping("cakes")
     public ResponseEntity<?> saveNewCakeInformation(@Valid @RequestBody CakePayload cakePayloadRequest) {
 
-        if (cakePayloadRequest == null || cakePayloadRequest.getTitle() == null
-                || cakePayloadRequest.getDescription() == null || cakePayloadRequest.getImageUrl() == null
-                || cakePayloadRequest.getDescription().isBlank() || cakePayloadRequest.getImageUrl().isBlank()
+        if (cakePayloadRequest == null || cakePayloadRequest.getDescription().isBlank() 
+                || cakePayloadRequest.getImageUrl().isBlank() 
                 || cakePayloadRequest.getTitle().isBlank()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -90,6 +89,24 @@ public class CakeController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("cake/{cakeId}")
+    public ResponseEntity<?> findCakeById(@PathVariable("cakeId") Long cakeId) {
+
+        if (cakeId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        Cake cake = this.cakeService.findCakeById(cakeId);
+        if (cake == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        CakePayload cakePayload = modelMapper.map(cake, CakePayload.class);
+        return new ResponseEntity<>(cakePayload, HttpStatus.OK);
     }
 
     private List<CakePayload> prepareCakePayloadData() {

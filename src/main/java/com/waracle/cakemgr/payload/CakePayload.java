@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @ToString
 public class CakePayload {
 
-    private Long cakeId;
+    private Long id;
     @NotNull(message = "Title cannot be blank")
     private String title;
     @NotNull(message = "Description cannot be blank")
