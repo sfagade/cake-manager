@@ -32,7 +32,6 @@ public class CakeServiceImpl implements CakeService {
 
         if (newCake == null || newCake.getImageUrl() == null
                 || newCake.getDescription() == null || newCake.getTitle() == null) {
-            log.debug("No cake record passed");
             return null;
         }
 

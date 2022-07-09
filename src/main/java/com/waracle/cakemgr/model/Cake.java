@@ -1,9 +1,5 @@
 package com.waracle.cakemgr.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.waracle.cakemgr.model.listener.RecordUpdateListener;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,16 +28,12 @@ public class Cake implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cake_id", nullable = false, columnDefinition = "BIGINT")
+    @Column(name = "cake_id", nullable = false)
     private Long id;
 
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @Column(name = "created_on")
     private LocalDateTime createdOn;
 
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @Column(name = "modified_on")
     private LocalDateTime modifiedOn;
 

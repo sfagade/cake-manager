@@ -2,18 +2,15 @@ package com.waracle.cakemgr.service.impl;
 
 import com.waracle.cakemgr.model.Cake;
 import com.waracle.cakemgr.service.CakeService;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Slf4j
 class CakeServiceImplTest {
 
     @Autowired
@@ -84,13 +81,13 @@ class CakeServiceImplTest {
     @Test
     void findCakeByIdDefaultState() {
 
-        Long cakeId = 2L;
+        Long cakeId = 1L;
         Cake cake = this.cakeService.findCakeById(cakeId);
 
         assertAll(
                 "Save New Cake Default State Test",
                 () -> assertNotNull(cake, "Cake  is null"),
-                () -> assertEquals(cake.getId(), 2L, "ID not equal to search ID"));
+                () -> assertEquals(cake.getId(), 1L, "ID not equal to search ID"));
     }
 
     @Test
@@ -101,7 +98,7 @@ class CakeServiceImplTest {
     }
 
     @Test
-    void findCakeByIdNegativeId() {
+    void findCakeByIdInvalidId() {
 
         Long cakeId = -1L;
         Cake cake = this.cakeService.findCakeById(cakeId);
