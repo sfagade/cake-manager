@@ -23,6 +23,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Maven Test
-      run: mvn '-Dtest=com.waracle.cakemgr.controller.*Test', '-Dtest=com.waracle.cakemgr.service.impl.*Test' test
+      run: mvn '-Dtest=com.waracle.cakemgr.controller.*Test', '-Dtest=com.waracle.cakemgr.service.impl.*Test', '-Dtest=com.waracle.cakemgr.*Test' test
     - name: Build with Maven
       run: mvn -B package --file pom.xml
